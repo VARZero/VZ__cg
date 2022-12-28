@@ -39,7 +39,7 @@ enum optype{
     I, M = 2,
     BR,
     B
-}OpType;
+};
 
 const struct vz32_opcode vz32_list_opcodes[] = {
     {"ADD", R, OPC_ALU, 0},
@@ -118,6 +118,75 @@ const struct vz32_opcode vz32_list_opcodes[] = {
     {"SYSTEM-CALL", B, OPC_SYSTEM | 0x7, 0}
 };
 
+struct register_type{
+    const char regnum;
+    const char* name;
+    const char type;    
+};
 
+enum Reg_type{
+    REG_ZERO,
+    REG_POINTER,
+    REG_FUNCARGU,
+    REG_FSAVED,
+    REG_TEMP,
+    REG_INTERRUPT,
+    REG_KERNEL
+}REGTYPE;
+
+const struct register_type vz32_list_registers[] = {
+    {0, "Zero", REG_ZERO},
+    {1, "Back", REG_POINTER},
+    {2, "BP", REG_POINTER},
+    {3, "SP", REG_POINTER},
+    {4, "i0 / Fa1", REG_FUNCARGU},
+    {5, "i1 / Fa2", REG_FUNCARGU},
+    {6, "i2 / Fa3", REG_FUNCARGU},
+    {7, "i3 / Fa4", REG_FUNCARGU},
+    {8, "i4 / Fa5", REG_FUNCARGU},
+    {9, "i5 / Fa6", REG_FUNCARGU},
+    {10, "i6 / Sr1", REG_FSAVED},
+    {11, "i7 / Sr2", REG_FSAVED},
+    {12, "i8 / Sr3", REG_FSAVED},
+    {13, "i9 / Sr4", REG_FSAVED},
+    {14, "i10 / Sr5", REG_FSAVED},
+    {15, "i11 / Sr6", REG_FSAVED},
+    {16, "i12 / Sr7", REG_FSAVED},
+    {17, "i13 / Sr8", REG_FSAVED},
+    {18, "i14 / Tm1", REG_TEMP},
+    {19, "i15 / Tm2", REG_TEMP},
+    {20, "i16 / Tm3", REG_TEMP},
+    {21, "i17 / Tm4", REG_TEMP},
+    {22, "i18 / Tm5", REG_TEMP},
+    {23, "i19 / Tm6 / DIV_RMD", REG_TEMP},
+    {24, "IntrName", REG_INTERRUPT},
+    {25, "IntrType", REG_INTERRUPT},
+    {26, "IntrData1", REG_INTERRUPT},
+    {27, "IntrData2", REG_INTERRUPT},
+    {28, "K0", REG_KERNEL},
+    {29, "K1", REG_KERNEL},
+    {30, "K2", REG_KERNEL},
+    {31, "K3", REG_KERNEL}
+};
+
+static const char* vz32_name_normal_opcode[32] = {
+    "zero", "back", "bp", "sp", 
+    "i0", "i1", "i2", "i3",
+    "i4", "i5", "i6", "i7",
+    "i8", "i9", "i10", "i11",
+    "i12", "i13", "i14", "i15",
+    "i16", "i17", "i18", "i19",
+    "intrn", "intrt", "intrd1", "intrd2",
+    "k0", "k1", "k2", "k3"
+};
+
+static const char* vz32_name_functional_opcode[32] = {
+    "zero", "back", "bp", "sp", 
+    "fa1", "fa2", "fa3", "fa4", "fa5", "fa6",
+    "sr1", "sr2", "sr3", "sr4", "sr5", "sr6", "sr7", "sr8",
+    "tm1", "tm2", "tm3", "tm4", "tm5", "tm6",
+    "intrn", "intrt", "intrd1", "intrd2",
+    "k0", "k1", "k2", "k3"
+};
 
 #endif
