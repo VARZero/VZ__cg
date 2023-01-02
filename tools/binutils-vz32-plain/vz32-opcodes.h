@@ -35,8 +35,8 @@ struct vz32_opcode{
 };
 
 enum optype{
-    R = 1,
-    I, M = 2,
+    R, M = 1,
+    I = 2,
     BR,
     B
 };
@@ -188,5 +188,12 @@ static const char* vz32_name_functional_opcode[32] = {
     "intrn", "intrt", "intrd1", "intrd2",
     "k0", "k1", "k2", "k3"
 };
+
+enum CpuMode{
+    RING_KERNEL,
+    RING_HYPERVISOR,
+    RING_DRIVER,
+    RING_USERAPP
+}CPURING;
 
 #endif
