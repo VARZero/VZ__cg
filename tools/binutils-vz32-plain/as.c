@@ -21,7 +21,9 @@ bool command_syntax(char* line, char* outputBin, char* error){
         }
 
     // Opcode에 맞는 타입인가?
-        for(short RegCnt = 0; RegCnt <= ) // 작성중
+        for(short RegCnt = 0; RegCnt <= nowOp.type; RegCnt){
+            // 작성중
+        }
 
     return 1;
 }
