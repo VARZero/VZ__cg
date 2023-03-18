@@ -35,11 +35,14 @@ struct vz32_opcode{
 };
 
 enum optype{
-    R, M = 1,
-    I = 2,
+    B = 0,
     BR,
-    B
+    I = 2,
+    M = 2,
+    R
 };
+
+const short vz32_opcode_count = 68;
 
 const struct vz32_opcode vz32_list_opcodes[] = {
     {"ADD", R, OPC_ALU, 0},
