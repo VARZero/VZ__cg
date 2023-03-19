@@ -42,6 +42,7 @@ bool command_syntax(char* line, char* outputBin, char* error){
             if (error[0] == "I"){return 0;}
         }
         char IMM[50] = strtok(NULL, " ,");
+        outputBin = outputBin | ( IMM << ( 7 + nowOp.type*5 ));
 
         error = " ";
         if (strtok(NULL, " ,") != NULL){
